@@ -2479,6 +2479,27 @@
 </style>
 
 
+<style>
+/* 指摘3: SP flow connector */
+@media (max-width: 640px) {
+  [data-steps="1"] {
+    position: relative;
+    padding-left: 28px;
+  }
+  [data-steps="1"]::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(255,175,4,0.2) 0%, #FFAF04 15%, #FFAF04 85%, rgba(255,175,4,0.2) 100%);
+  }
+  [data-steps="1"] > div {
+    padding-left: 0 !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -2738,41 +2759,41 @@
 
       <div style="position:relative">
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:0" data-steps="1">
-          <div data-reveal="1" style="position:relative;border-top:1px solid rgba(255,255,255,0.16);padding:26px 22px 30px 0">
-            <div style="width:12px;height:12px;border-radius:50%;background:#1A2B3F;border:2px solid #FFAF04;margin:-32px 0 24px;position:relative;z-index:2"></div>
+          <div data-reveal="1" style="position:relative;border-top:none;padding:26px 22px 30px 0;padding-top:26px">
+            <div style="width:16px;height:16px;border-radius:50%;background:#1A2B3F;border:2.5px solid #FFAF04;margin:-34px 0 22px;position:relative;z-index:2;box-shadow:0 0 8px rgba(255,175,4,0.5)"></div>
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FFAF04;display:block;margin-bottom:12px">01</span>
             <h4 style="font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px">CONSULT <span style="color:#FFAF04;margin-left:6px;font-weight:400">→</span></h4>
             <p style="font-size:12.5px;color:rgba(255,255,255,0.62);line-height:1.8">相談</p>
           </div>
-          <div data-reveal="1" style="position:relative;border-top:1px solid rgba(255,255,255,0.16);padding:26px 22px 30px 0">
-            <div style="width:12px;height:12px;border-radius:50%;background:#1A2B3F;border:2px solid #FFAF04;margin:-32px 0 24px;position:relative;z-index:2"></div>
+          <div data-reveal="1" style="position:relative;border-top:none;padding:26px 22px 30px 0;padding-top:26px">
+            <div style="width:16px;height:16px;border-radius:50%;background:#1A2B3F;border:2.5px solid #FFAF04;margin:-34px 0 22px;position:relative;z-index:2;box-shadow:0 0 8px rgba(255,175,4,0.5)"></div>
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FFAF04;display:block;margin-bottom:12px">02</span>
             <h4 style="font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px">UNDERSTAND <span style="color:#FFAF04;margin-left:6px;font-weight:400">→</span></h4>
             <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#FFAF04;border:1px solid rgba(255,175,4,0.4);padding:2px 7px;border-radius:2px;margin-bottom:10px">AI × エンジニア</span>
             <p style="font-size:12.5px;color:rgba(255,255,255,0.62);line-height:1.8">事業理解<br>業務・課題を理解</p>
           </div>
-          <div data-reveal="1" style="position:relative;border-top:1px solid rgba(255,255,255,0.16);padding:26px 22px 30px 0">
-            <div style="width:12px;height:12px;border-radius:50%;background:#1A2B3F;border:2px solid #FFAF04;margin:-32px 0 24px;position:relative;z-index:2"></div>
+          <div data-reveal="1" style="position:relative;border-top:none;padding:26px 22px 30px 0;padding-top:26px">
+            <div style="width:16px;height:16px;border-radius:50%;background:#1A2B3F;border:2.5px solid #FFAF04;margin:-34px 0 22px;position:relative;z-index:2;box-shadow:0 0 8px rgba(255,175,4,0.5)"></div>
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FFAF04;display:block;margin-bottom:12px">03</span>
             <h4 style="font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px">DEFINE <span style="color:#FFAF04;margin-left:6px;font-weight:400">→</span></h4>
             <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#FFAF04;border:1px solid rgba(255,175,4,0.4);padding:2px 7px;border-radius:2px;margin-bottom:10px">AI × エンジニア</span>
             <p style="font-size:12.5px;color:rgba(255,255,255,0.62);line-height:1.8">要求要件定義<br>要件を整理・定義</p>
           </div>
-          <div data-reveal="1" style="position:relative;border-top:1px solid rgba(255,255,255,0.16);padding:26px 22px 30px 0">
-            <div style="width:12px;height:12px;border-radius:50%;background:#1A2B3F;border:2px solid #FFAF04;margin:-32px 0 24px;position:relative;z-index:2"></div>
+          <div data-reveal="1" style="position:relative;border-top:none;padding:26px 22px 30px 0;padding-top:26px">
+            <div style="width:16px;height:16px;border-radius:50%;background:#1A2B3F;border:2.5px solid #FFAF04;margin:-34px 0 22px;position:relative;z-index:2;box-shadow:0 0 8px rgba(255,175,4,0.5)"></div>
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FFAF04;display:block;margin-bottom:12px">04</span>
             <h4 style="font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px">DEVELOP <span style="color:#FFAF04;margin-left:6px;font-weight:400">→</span></h4>
             <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#FFAF04;border:1px solid rgba(255,175,4,0.4);padding:2px 7px;border-radius:2px;margin-bottom:10px">AI × エンジニア</span>
             <p style="font-size:12.5px;color:rgba(255,255,255,0.62);line-height:1.8">開発<br>実装支援・テスト効率化</p>
           </div>
-          <div data-reveal="1" style="position:relative;border-top:1px solid rgba(255,255,255,0.16);padding:26px 22px 30px 0">
-            <div style="width:12px;height:12px;border-radius:50%;background:#1A2B3F;border:2px solid #FFAF04;margin:-32px 0 24px;position:relative;z-index:2"></div>
+          <div data-reveal="1" style="position:relative;border-top:none;padding:26px 22px 30px 0;padding-top:26px">
+            <div style="width:16px;height:16px;border-radius:50%;background:#1A2B3F;border:2.5px solid #FFAF04;margin:-34px 0 22px;position:relative;z-index:2;box-shadow:0 0 8px rgba(255,175,4,0.5)"></div>
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FFAF04;display:block;margin-bottom:12px">05</span>
             <h4 style="font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px">RELEASE <span style="color:#FFAF04;margin-left:6px;font-weight:400">→</span></h4>
             <p style="font-size:12.5px;color:rgba(255,255,255,0.62);line-height:1.8">リリース<br>ドキュメント作成の効率化</p>
           </div>
-          <div data-reveal="1" style="position:relative;border-top:1px solid rgba(255,255,255,0.16);padding:26px 22px 30px 0">
-            <div style="width:12px;height:12px;border-radius:50%;background:#1A2B3F;border:2px solid #FFAF04;margin:-32px 0 24px;position:relative;z-index:2"></div>
+          <div data-reveal="1" style="position:relative;border-top:none;padding:26px 22px 30px 0;padding-top:26px">
+            <div style="width:16px;height:16px;border-radius:50%;background:#1A2B3F;border:2.5px solid #FFAF04;margin:-34px 0 22px;position:relative;z-index:2;box-shadow:0 0 8px rgba(255,175,4,0.5)"></div>
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FFAF04;display:block;margin-bottom:12px">06</span>
             <h4 style="font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px">SUPPORT</h4>
             <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#FFAF04;border:1px solid rgba(255,175,4,0.4);padding:2px 7px;border-radius:2px;margin-bottom:10px">AI × エンジニア</span>
