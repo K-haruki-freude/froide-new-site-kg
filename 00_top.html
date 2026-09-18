@@ -3177,35 +3177,143 @@ section[data-screen-label="05 AI Driven"] [style*="clip-path:polygon"]:hover {
     </div>
   </section>
 
-  <footer style="background:#0F1B28;color:rgba(255,255,255,0.6);padding:76px 0 34px">
+  
+<!-- ===== Footer Pattern Switcher (デザイン確認用) ===== -->
+<div id="footer-switcher" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+  <div style="font-size:10px;letter-spacing:0.08em;color:rgba(255,255,255,0.5);text-align:right;margin-bottom:2px;font-family:'IBM Plex Mono',monospace">FOOTER PATTERN</div>
+  <div style="display:flex;gap:6px">
+    <button onclick="setFooterPattern('A')" id="fp-A" style="padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1.5px solid rgba(255,255,255,0.25);border-radius:2px;background:rgba(15,27,40,0.85);color:rgba(255,255,255,0.7);cursor:pointer;transition:all .2s;font-family:'IBM Plex Mono',monospace">A</button>
+    <button onclick="setFooterPattern('B')" id="fp-B" style="padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1.5px solid rgba(255,255,255,0.25);border-radius:2px;background:rgba(15,27,40,0.85);color:rgba(255,255,255,0.7);cursor:pointer;transition:all .2s;font-family:'IBM Plex Mono',monospace">B</button>
+    <button onclick="setFooterPattern('C')" id="fp-C" style="padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1.5px solid rgba(255,255,255,0.25);border-radius:2px;background:rgba(15,27,40,0.85);color:rgba(255,255,255,0.7);cursor:pointer;transition:all .2s;font-family:'IBM Plex Mono',monospace">C</button>
+  </div>
+</div>
+<script>
+(function() {
+  var patterns = {
+    A: {
+      bg: '#F5920A',
+      text: 'rgba(15,27,40,0.85)',
+      heading: '#0F1B28',
+      link: 'rgba(15,27,40,0.72)',
+      linkHover: '#fff',
+      border: 'rgba(15,27,40,0.15)',
+      label: 'A: ブライトオレンジ'
+    },
+    B: {
+      bg: '#C97A00',
+      text: 'rgba(15,27,40,0.80)',
+      heading: '#0F1B28',
+      link: 'rgba(15,27,40,0.70)',
+      linkHover: '#fff',
+      border: 'rgba(15,27,40,0.18)',
+      label: 'B: ダークゴールド'
+    },
+    C: {
+      bg: 'linear-gradient(135deg,#1A2B3F 0%,#2A1400 100%)',
+      text: 'rgba(255,255,255,0.65)',
+      heading: '#fff',
+      link: 'rgba(255,255,255,0.6)',
+      linkHover: '#FFAF04',
+      border: 'rgba(255,255,255,0.12)',
+      label: 'C: グラデーション'
+    }
+  };
+
+  window.setFooterPattern = function(key) {
+    var p = patterns[key];
+    var footer = document.querySelector('footer');
+    if (!footer) return;
+
+    // bg
+    footer.style.background = p.bg;
+    footer.style.color = p.text;
+
+    // headings
+    footer.querySelectorAll('h5, [data-footer-logo]').forEach(function(el) {
+      el.style.color = p.heading;
+    });
+    // COMPANY. logo div (first bold div)
+    var logo = footer.querySelector('div[style*="Space Grotesk"]');
+    if (logo) logo.style.color = p.heading;
+
+    // links
+    footer.querySelectorAll('a').forEach(function(a) {
+      a.style.color = p.link;
+      a.setAttribute('data-hover-style', 'color:' + p.linkHover);
+    });
+
+    // borders
+    footer.querySelectorAll('[style*="border-bottom"],[style*="border-top"]').forEach(function(el) {
+      el.style.borderBottomColor = p.border;
+      el.style.borderTopColor = p.border;
+    });
+
+    // copyright text
+    footer.querySelectorAll('span').forEach(function(el) {
+      if (!el.closest('a')) el.style.color = p.text;
+    });
+
+    // update active button
+    ['A','B','C'].forEach(function(k) {
+      var btn = document.getElementById('fp-' + k);
+      if (k === key) {
+        btn.style.background = '#FFAF04';
+        btn.style.color = '#0F1B28';
+        btn.style.borderColor = '#FFAF04';
+      } else {
+        btn.style.background = 'rgba(15,27,40,0.85)';
+        btn.style.color = 'rgba(255,255,255,0.7)';
+        btn.style.borderColor = 'rgba(255,255,255,0.25)';
+      }
+    });
+
+    // label
+    var label = document.getElementById('fp-label');
+    if (!label) {
+      label = document.createElement('div');
+      label.id = 'fp-label';
+      label.style.cssText = 'font-size:10px;color:rgba(255,255,255,0.45);font-family:IBM Plex Mono,monospace;text-align:right;margin-top:4px';
+      document.getElementById('footer-switcher').appendChild(label);
+    }
+    label.textContent = p.label;
+  };
+
+  // Init: set B as active (current state)
+  document.addEventListener('DOMContentLoaded', function() {
+    window.setFooterPattern('B');
+  });
+})();
+</script>
+<!-- ===== /Footer Pattern Switcher ===== -->
+<footer style="background:#C97A00;color:rgba(15,27,40,0.80);padding:76px 0 34px">
     <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,3vw,32px)">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,0.1)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;padding-bottom:52px;border-bottom:1px solid rgba(15,27,40,0.18)">
         <div>
-          <div style="color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;margin-bottom:16px">COMPANY.</div>
+          <div style="color:#0F1B28;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;margin-bottom:16px">COMPANY.</div>
           <p style="font-size:13px;line-height:1.95;max-width:270px">AI駆動開発と、現場に寄り添う伴走で、お客様の事業に本当に必要なシステムをかたちにします。</p>
         </div>
         <div>
-          <h5 style="color:#fff;font-size:12.5px;letter-spacing:0.1em;margin-bottom:18px;font-weight:700">SERVICE</h5>
+          <h5 style="color:#0F1B28;font-size:12.5px;letter-spacing:0.1em;margin-bottom:18px;font-weight:700">SERVICE</h5>
           <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:13px">
-            <li><a href="#service" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">システム開発</a></li>
-            <li><a href="#case" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">開発事例</a></li>
-            <li><a href="#" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">ゲーム開発</a></li>
-            <li><a href="#" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">対応課題一覧</a></li>
+            <li><a href="#service" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">システム開発</a></li>
+            <li><a href="#case" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">開発事例</a></li>
+            <li><a href="#" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">ゲーム開発</a></li>
+            <li><a href="#" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">対応課題一覧</a></li>
           </ul>
         </div>
         <div>
-          <h5 style="color:#fff;font-size:12.5px;letter-spacing:0.1em;margin-bottom:18px;font-weight:700">COMPANY</h5>
+          <h5 style="color:#0F1B28;font-size:12.5px;letter-spacing:0.1em;margin-bottom:18px;font-weight:700">COMPANY</h5>
           <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:13px">
-            <li><a href="05_company.html" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">会社概要</a></li>
-            <li><a href="06_news.html" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">NEWS</a></li>
-            <li><a href="04_recruit.html" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">採用情報</a></li>
+            <li><a href="05_company.html" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">会社概要</a></li>
+            <li><a href="06_news.html" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">NEWS</a></li>
+            <li><a href="04_recruit.html" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">採用情報</a></li>
           </ul>
         </div>
         <div>
-          <h5 style="color:#fff;font-size:12.5px;letter-spacing:0.1em;margin-bottom:18px;font-weight:700">CONTACT</h5>
+          <h5 style="color:#0F1B28;font-size:12.5px;letter-spacing:0.1em;margin-bottom:18px;font-weight:700">CONTACT</h5>
           <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:13px">
-            <li><a href="#contact" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">お問い合わせ</a></li>
-            <li><a href="#" style="color:rgba(255,255,255,0.6)" data-hover-style="color:#FFAF04">プライバシーポリシー</a></li>
+            <li><a href="#contact" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">お問い合わせ</a></li>
+            <li><a href="#" style="color:rgba(15,27,40,0.70)" data-hover-style="color:#fff">プライバシーポリシー</a></li>
           </ul>
         </div>
       </div>
