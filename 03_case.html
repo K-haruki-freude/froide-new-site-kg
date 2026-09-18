@@ -2477,6 +2477,93 @@
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
 </style>
 
+<style>
+/* === 03_case: Evidence / Story === */
+[data-screen-label="01 Page Hero"] {
+  background: #fff !important;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(60px,8vw,110px) 0 clamp(80px,10vw,130px) !important;
+}
+[data-screen-label="01 Page Hero"]::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg,transparent,rgba(26,43,63,0.03));
+  pointer-events: none;
+}
+[data-screen-label="01 Page Hero"]::after {
+  content: 'CASE';
+  position: absolute;
+  right: clamp(20px,4vw,60px); top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px,16vw,220px);
+  color: rgba(26,43,63,0.04);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="02 Basic Info"] {
+  background: #F2F5F7 !important;
+  border-top: 4px solid #FFAF04;
+  padding: clamp(56px,7vw,90px) 0 !important;
+}
+[data-screen-label="03 Background"] {
+  background: linear-gradient(160deg,#fff 0%,#f5f7fa 100%) !important;
+  padding: clamp(72px,9vw,120px) 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="03 Background"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg,transparent,transparent 60px,rgba(26,43,63,0.015) 60px,rgba(26,43,63,0.015) 62px);
+  pointer-events: none;
+}
+[data-screen-label="05 Approach"] {
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="05 Approach"]::before {
+  content: 'HOW';
+  position: absolute;
+  left: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(100px,18vw,240px);
+  color: rgba(255,175,4,0.06);
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="06 Results"] {
+  background: #fff !important;
+  padding: clamp(80px,10vw,130px) 0 !important;
+  border-bottom: 4px solid #FFAF04;
+}
+[data-screen-label="07 Voice"] {
+  background: linear-gradient(135deg,#F2F5F7 0%,#e8edf2 100%) !important;
+  padding: clamp(72px,9vw,120px) 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="07 Voice"]::after {
+  content: '"';
+  position: absolute;
+  right: 5%; top: 10%;
+  font-size: clamp(120px,20vw,280px);
+  color: rgba(255,175,4,0.08);
+  font-family: Georgia, serif;
+  line-height: 1;
+  pointer-events: none;
+}
+</style>
 
 </head>
 <body>

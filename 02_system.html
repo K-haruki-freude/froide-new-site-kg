@@ -2478,6 +2478,85 @@
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
 </style>
 
+<style>
+/* === 02_system: Precision / Technical === */
+[data-screen-label="01 Page Hero"] {
+  border-left: 6px solid #FFAF04 !important;
+  background: #fff !important;
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="01 Page Hero"]::after {
+  content: 'SYSTEM';
+  position: absolute;
+  right: -10px; bottom: -20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(60px,12vw,160px);
+  color: rgba(26,43,63,0.04);
+  letter-spacing: 0.12em;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="02 Effect"],
+[data-screen-label="03 Comparison"],
+[data-screen-label="04 Styles"] { position: relative; overflow: hidden; }
+[data-screen-label="02 Effect"]::before { content: '01'; }
+[data-screen-label="03 Comparison"]::before { content: '02'; }
+[data-screen-label="04 Styles"]::before { content: '03'; }
+[data-screen-label="02 Effect"]::before,
+[data-screen-label="03 Comparison"]::before,
+[data-screen-label="04 Styles"]::before {
+  position: absolute;
+  right: -20px; bottom: -30px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(100px,20vw,260px);
+  color: rgba(255,175,4,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+[data-screen-label="04 Styles"] {
+  padding-bottom: 0 !important;
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  margin-bottom: -50px;
+  z-index: 1;
+  position: relative;
+}
+[data-screen-label="05 Process"] {
+  background: #fff !important;
+  padding: clamp(100px,12vw,160px) 0 clamp(80px,10vw,130px) !important;
+  position: relative;
+}
+[data-screen-label="06 Quality"] {
+  background: linear-gradient(135deg,#F2F5F7 0%,#e8edf2 100%) !important;
+  padding: clamp(80px,10vw,130px) 0 !important;
+}
+[data-screen-label="07 Initiatives"] {
+  background: #fff !important;
+  padding: clamp(80px,10vw,130px) 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="07 Initiatives"]::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 35%; height: 100%;
+  background: radial-gradient(circle at 80% 30%,rgba(255,175,4,0.07),transparent 60%);
+  pointer-events: none;
+}
+[data-screen-label="08 FAQ"] {
+  background: #0D1A27 !important;
+  color: #fff !important;
+  padding: clamp(80px,10vw,130px) 0 !important;
+}
+[data-screen-label="08 FAQ"] h2,[data-screen-label="08 FAQ"] h3,
+[data-screen-label="08 FAQ"] h4,[data-screen-label="08 FAQ"] p,
+[data-screen-label="08 FAQ"] summary { color: rgba(255,255,255,0.9) !important; }
+[data-screen-label="08 FAQ"] details { border-color: rgba(255,255,255,0.12) !important; }
+</style>
 
 </head>
 <body>

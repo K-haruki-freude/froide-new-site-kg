@@ -2478,6 +2478,76 @@
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
 </style>
 
+<style>
+/* === 04_recruit: Human / Energy === */
+[data-screen-label="01 Page Hero"] {
+  background: #fff !important;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(80px,10vw,140px) 0 clamp(80px,10vw,130px) !important;
+}
+[data-screen-label="01 Page Hero"]::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg,#FFAF04,#F2A300,#1A2B3F);
+}
+[data-screen-label="01 Page Hero"]::after {
+  content: 'JOIN';
+  position: absolute;
+  right: -10px; bottom: -20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px,16vw,220px);
+  color: rgba(26,43,63,0.04);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="02 Culture"] {
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="02 Culture"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,175,4,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,175,4,0.05) 1px,transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+[data-screen-label="02 Culture"]::after {
+  content: 'CULTURE';
+  position: absolute;
+  left: -20px; bottom: -10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(60px,12vw,160px);
+  color: rgba(255,175,4,0.06);
+  letter-spacing: 0.15em;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="03 Positions"] {
+  background: linear-gradient(160deg,#F2F5F7 0%,#e8edf2 100%) !important;
+  padding: clamp(80px,10vw,130px) 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="03 Positions"]::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%; height: 100%;
+  background: radial-gradient(circle at 80% 20%,rgba(255,175,4,0.08),transparent 60%);
+  pointer-events: none;
+}
+</style>
+
 </head>
 <body>
 

@@ -2478,6 +2478,47 @@
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
 </style>
 
+<style>
+/* === 06_news: Clean / Readable === */
+[data-screen-label="01 Page Hero"] {
+  background: #0D1A27 !important;
+  color: #fff !important;
+  padding: clamp(80px,10vw,120px) 0 clamp(60px,7vw,90px) !important;
+  position: relative;
+  overflow: hidden;
+  border-bottom: none !important;
+}
+[data-screen-label="01 Page Hero"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg,transparent,transparent 100px,rgba(255,175,4,0.03) 100px,rgba(255,175,4,0.03) 101px);
+  pointer-events: none;
+}
+[data-screen-label="01 Page Hero"]::after {
+  content: 'NEWS';
+  position: absolute;
+  right: -10px; bottom: -20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px,16vw,220px);
+  color: rgba(255,175,4,0.05);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="01 Page Hero"] h1,
+[data-screen-label="01 Page Hero"] h2,
+[data-screen-label="01 Page Hero"] p { color: #fff !important; }
+[data-screen-label="01 Page Hero"] span[style*="color:#F2A300"],
+[data-screen-label="01 Page Hero"] span[style*="color:#FFAF04"] { color: #FFAF04 !important; }
+[data-screen-label="02 News List"] {
+  background: #fff !important;
+  padding: clamp(56px,7vw,90px) 0 clamp(80px,10vw,130px) !important;
+}
+</style>
+
 </head>
 <body>
 

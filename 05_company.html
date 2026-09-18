@@ -2479,6 +2479,65 @@
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
 </style>
 
+<style>
+/* === 05_company: Trust / Foundation === */
+[data-screen-label="01 Page Hero"] {
+  background: linear-gradient(135deg,#fff 60%,#F2F5F7 100%) !important;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(80px,10vw,140px) 0 clamp(80px,10vw,130px) !important;
+}
+[data-screen-label="01 Page Hero"]::after {
+  content: 'FROIDE';
+  position: absolute;
+  right: -10px; bottom: -10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(60px,12vw,160px);
+  color: rgba(26,43,63,0.04);
+  letter-spacing: 0.12em;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="02 MVV"] {
+  position: relative;
+  overflow: hidden;
+}
+[data-screen-label="02 MVV"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,175,4,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,175,4,0.04) 1px,transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+[data-screen-label="02 MVV"]::after {
+  content: 'VALUE';
+  position: absolute;
+  right: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px,15vw,200px);
+  color: rgba(255,175,4,0.05);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+[data-screen-label="03 Profile"] {
+  background: #fff !important;
+  padding: clamp(80px,10vw,130px) 0 !important;
+  border-top: 4px solid #FFAF04;
+}
+[data-screen-label="04 Access"] {
+  background: linear-gradient(160deg,#F2F5F7 0%,#e8edf2 100%) !important;
+  padding: clamp(80px,10vw,130px) 0 !important;
+}
+</style>
+
 </head>
 <body>
 
