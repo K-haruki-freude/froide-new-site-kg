@@ -2542,9 +2542,35 @@ section[data-screen-label="01 Hero"] a[href="#contact"]:hover {
   animation: none;
 }
 
-/* Header nav CTA — シャープ化（合わせて統一） */
+/* Header nav CTA — A+C: アンダーライン + 矢印スライドイン */
 a[data-header-cta="1"] {
   border-radius: 2px !important;
+  position: relative;
+  text-decoration: none;
+}
+/* 案A: ゴールドアンダーライン (::after は section overlay と干渉しないようにspan内に入れているためinset-shadowで代替) */
+a[data-header-cta="1"]::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: #0F1B28;
+  transition: width .3s ease;
+}
+a[data-header-cta="1"]:hover::after {
+  width: 100%;
+}
+a[data-header-cta="1"]:hover {
+  background: linear-gradient(165deg,#FFE070 0%,#FFD04A 45%,#F2A800 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.22) inset, 0 4px 10px rgba(0,0,0,0.35), 0 12px 28px rgba(255,175,4,0.38) !important;
+}
+/* 案C: 矢印スライドイン */
+a[data-header-cta="1"]:hover .hcta-arrow span:first-child {
+  transform: translateX(120%);
+}
+a[data-header-cta="1"]:hover .hcta-arrow span:last-child {
+  transform: translateX(0);
 }
 
 /* ========================================
@@ -2702,7 +2728,7 @@ section[data-screen-label="05 AI Driven"] [style*="clip-path:polygon"]:hover {
         <li><a href="04_recruit.html" style="padding-bottom:3px;border-bottom:2px solid transparent;white-space:nowrap" data-hover-style="border-bottom-color:#FFAF04;color:#1A2B3F">RECRUIT</a></li>
         <li><a href="#contact" style="padding-bottom:3px;border-bottom:2px solid transparent;white-space:nowrap" data-hover-style="border-bottom-color:#FFAF04;color:#1A2B3F">CONTACT</a></li>
       </ul>
-      <a href="07_contact.html" data-header-cta="1" style="display:inline-flex;align-items:center;gap:9px;background:#FFAF04;color:#0F1B28;font-weight:700;font-size:13px;padding:12px 20px;border-radius:4px;transition:transform .2s ease,background .2s ease" data-hover-style="background:#FFD467;transform:translateY(-1px)">相談する<span>→</span></a>
+      <a href="07_contact.html" data-header-cta="1" style="display:inline-flex;align-items:center;gap:0;background:linear-gradient(165deg,#FFD04A 0%,#FFAF04 45%,#E09600 100%);color:#0F1B28;font-weight:700;font-size:13px;border-radius:2px;overflow:hidden;transition:box-shadow .25s ease,transform .2s ease;position:relative;border-top:1.5px solid rgba(255,255,255,0.42);border-bottom:1.5px solid rgba(0,0,0,0.22);box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 5px rgba(0,0,0,0.32),0 6px 18px rgba(255,175,4,0.28)"><span style="padding:12px 20px;display:inline-flex;align-items:center;gap:8px">相談する<span class="hcta-arrow" style="display:inline-flex;overflow:hidden;width:14px;height:14px;position:relative"><span style="position:absolute;transition:transform .25s ease">→</span><span style="position:absolute;transform:translateX(-120%);transition:transform .25s ease">→</span></span></span></a>
       <button data-burger="1" aria-label="メニュー" style="display:none;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:1px solid rgba(26,43,63,0.18);border-radius:6px;cursor:pointer;flex:none;padding:0"><span data-burger-icon="1" style="display:block;font-size:20px;line-height:1;color:#1A2B3F">≡</span></button>
     </div>
     <div data-progress="1" style="height:2px;background:#FFAF04;width:0%;transition:width .12s linear"></div>
