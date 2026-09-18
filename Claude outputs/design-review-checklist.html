@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>デザインカンプ レビューチェックリスト</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      background: #f4f5f7;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      padding: 56px 40px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      top: -120px; right: -80px;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      bottom: -60px; left: 10%;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .header-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #7ecac3;
+      border: 1px solid rgba(126,202,195,.4);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+    }
+    header p {
+      margin-top: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.7;
+    }
+
+    /* ── SUMMARY PILLS ── */
+    .summary-bar {
+      background: #fff;
+      border-bottom: 1px solid #e8eaf0;
+    }
+    .summary-bar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: default;
+    }
+    .pill-icon { font-size: 16px; }
+    .pill-1 { background: #fff3e8; color: #b85c00; }
+    .pill-2 { background: #e8f4ff; color: #0060b8; }
+    .pill-3 { background: #edfaf5; color: #007a54; }
+    .pill-4 { background: #f3eeff; color: #6030b0; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 36px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 28px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-header:hover { filter: brightness(.97); }
+
+    .section-num {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .section-title-wrap { flex: 1; }
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .section-subtitle {
+      font-size: 12px;
+      margin-top: 2px;
+      opacity: .65;
+    }
+    .section-count {
+      font-size: 12px;
+      font-weight: 600;
+      opacity: .5;
+    }
+    .chevron {
+      font-size: 12px;
+      opacity: .4;
+      transition: transform .25s;
+    }
+    .section.open .chevron { transform: rotate(90deg); }
+
+    .section-body {
+      padding: 0 28px 24px;
+      display: none;
+    }
+    .section.open .section-body { display: block; }
+
+    /* color themes */
+    .s1 .section-header { background: #fff3e8; color: #7a3a00; }
+    .s1 .section-num { background: #e07020; }
+    .s1 .check-item::before { border-color: #e07020; }
+    .s1 .check-item.checked::before { background: #e07020; border-color: #e07020; }
+    .s1 .section-body { background: #fffaf5; }
+    .s1 .insight { background: #fff3e8; border-left: 3px solid #e07020; }
+
+    .s2 .section-header { background: #e8f4ff; color: #003a70; }
+    .s2 .section-num { background: #1a80d0; }
+    .s2 .check-item::before { border-color: #1a80d0; }
+    .s2 .check-item.checked::before { background: #1a80d0; border-color: #1a80d0; }
+    .s2 .section-body { background: #f5f9ff; }
+    .s2 .insight { background: #e8f4ff; border-left: 3px solid #1a80d0; }
+
+    .s3 .section-header { background: #edfaf5; color: #004530; }
+    .s3 .section-num { background: #00a070; }
+    .s3 .check-item::before { border-color: #00a070; }
+    .s3 .check-item.checked::before { background: #00a070; border-color: #00a070; }
+    .s3 .section-body { background: #f5fdf9; }
+    .s3 .insight { background: #edfaf5; border-left: 3px solid #00a070; }
+
+    .s4 .section-header { background: #f3eeff; color: #3a1880; }
+    .s4 .section-num { background: #7040c0; }
+    .s4 .check-item::before { border-color: #7040c0; }
+    .s4 .check-item.checked::before { background: #7040c0; border-color: #7040c0; }
+    .s4 .section-body { background: #faf7ff; }
+    .s4 .insight { background: #f3eeff; border-left: 3px solid #7040c0; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; margin-bottom: 20px; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item::before {
+      content: '';
+      width: 18px; height: 18px;
+      border-radius: 5px;
+      border: 2px solid;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: background .15s, border-color .15s;
+      position: relative;
+    }
+    .check-item.checked { opacity: .55; }
+    .check-item.checked::before {
+      content: '✓';
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      color: #fff;
+      line-height: 1;
+      padding-bottom: 1px;
+    }
+    .check-item-text { font-size: 14px; line-height: 1.65; }
+    .check-item-text strong { font-weight: 700; }
+
+    /* ── INSIGHT ── */
+    .insight {
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .insight-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .6;
+      margin-bottom: 4px;
+    }
+
+    /* ── FEEDBACK QUOTES ── */
+    .quotes {
+      margin-top: 16px;
+    }
+    .quote-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .5;
+      margin-bottom: 10px;
+    }
+    .quote {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .quote-mark {
+      font-size: 20px;
+      line-height: 1;
+      opacity: .25;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+    .quote-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #444;
+      font-style: italic;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .progress-label span:first-child { font-size: 14px; font-weight: 600; }
+    .progress-label span:last-child { font-size: 13px; color: #888; }
+    .progress-track {
+      height: 8px;
+      background: #eee;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, #e07020, #1a80d0, #00a070, #7040c0);
+      background-size: 200% 100%;
+      transition: width .4s ease;
+      width: 0%;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 40px 20px 48px; }
+      .summary-bar-inner, main { padding-left: 20px; padding-right: 20px; }
+      .section-header { padding: 20px; }
+      .section-body { padding: 0 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-label">Design Review</div>
+    <h1>デザインカンプ<br>レビューチェックリスト</h1>
+    <p>社外ディレクターのレビュー指摘をもとに整理した、<br>デザインカンプ確認時の注視ポイント</p>
+  </div>
+</header>
+
+<div class="summary-bar">
+  <div class="summary-bar-inner">
+    <div class="pill pill-1"><span class="pill-icon">◼</span> 造形・あしらい</div>
+    <div class="pill pill-2"><span class="pill-icon">◐</span> 背景・奥行き</div>
+    <div class="pill pill-3"><span class="pill-icon">◎</span> 視覚的補助</div>
+    <div class="pill pill-4"><span class="pill-icon">✦</span> コンテンツ訴求</div>
+  </div>
+</div>
+
+<main>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>チェック進捗</span>
+      <span id="progress-text">0 / 16 完了</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section s1 open">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">造形・あしらいのバリエーション</div>
+        <div class="section-subtitle">形状の多様性・直角偏重の解消</div>
+      </div>
+      <div class="section-count">4 項目</div>
+      <div class="chevron">▶</div>
+    </div>
+    <div class="section-body">
+      <ul class="check-list">
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">要素の形が<strong>「四角形（直角）」</strong>に偏っていないか確認する</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">写真・カード・ボックスなどに<strong>角丸処理</strong>が施されているか</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">直線・矩形以外の<strong>曲線・有機的な形状</strong>などの造形要素が使われているか</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">ラインやボーダーの使い方が<strong>パターン化・単調</strong>になっていないか</div>
+        </li>
+      </ul>
+      <div class="insight">
+        <div class="insight-label">📌 観点のまとめ</div>
+        全体的に「カチッとした印象」が支配的なとき、形状のバリエーション不足が原因であることが多い。角丸・曲線・非矩形トリミングなどを意識的に混在させているか確認する。
+      </div>
+      <div class="quotes">
+        <div class="quote-title">💬 指摘の声</div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">あしらいのバリエーションを増やしてください。角丸でもなく、カチッとした長方形の処理がほとんど。写真も角丸がなく長方形のトリミングのみ。</div>
+        </div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">pinterestで「Webデザイン あしらい」などで検索すると参考になるものが出てくると思います。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section s2 open">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">背景・奥行きの処理</div>
+        <div class="section-subtitle">のっぺり感の解消・立体感の演出</div>
+      </div>
+      <div class="section-count">4 項目</div>
+      <div class="chevron">▶</div>
+    </div>
+    <div class="section-body">
+      <ul class="check-list">
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">背景がすべて<strong>単色ベタ塗り</strong>になっていないか</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text"><strong>グラデーション・テクスチャ・パターン</strong>などの使用があるか</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">要素の<strong>「重なり」（オーバーラップ）</strong>が演出されているか</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">セクション間の境界に<strong>直線以外（曲線・斜めカットなど）</strong>が使われているか</div>
+        </li>
+      </ul>
+      <div class="insight">
+        <div class="insight-label">📌 観点のまとめ</div>
+        「のっぺりした印象」は奥行きの欠如から来る。Z軸方向の表現（影、重なり、グラデーション）が入っているかを確認する。
+      </div>
+      <div class="quotes">
+        <div class="quote-title">💬 指摘の声</div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">背景がすべて「単色ベタ塗り」なので平面的な印象です。「要素の重なり」を作ったり、グラデーションをつくったり、境界線に曲線を使うなど対応してみてください。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section s3 open">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">情報の視覚的補助・わかりやすさ</div>
+        <div class="section-subtitle">アイコン・矢印・具体的表現の導入</div>
+      </div>
+      <div class="section-count">4 項目</div>
+      <div class="chevron">▶</div>
+    </div>
+    <div class="section-body">
+      <ul class="check-list">
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">テキストが多いセクションに<strong>アイコン</strong>が添えられているか（特に「2つの事業で〜」の部分）</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">フローや順序を示す要素に<strong>矢印・番号・コネクター</strong>などが追加されているか（01〜06の流れ）</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text"><strong>「お知らせ」セクション</strong>はページ上部に配置されているか（緊急告知を想定した優先配置）</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">重要コンテンツの<strong>配置優先度</strong>がユーザーの視線・導線に沿っているか</div>
+        </li>
+      </ul>
+      <div class="insight">
+        <div class="insight-label">📌 観点のまとめ</div>
+        「文字が多い」「フローがわかりにくい」「コンテンツ配置がおかしい」の3点は別の問題に見えるが、いずれも「情報の視覚化・構造化不足」という同じ根因に行き着く。
+      </div>
+      <div class="quotes">
+        <div class="quote-title">💬 指摘の声</div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">01-06の部分は、左から右に流れていることがわかるように。（矢印などを追加するなど）</div>
+        </div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">要素として文字が多いので印象を和らげるためにアイコンをいれてください。「2つの事業で、ものづくりを」の部分はそれぞれアイコンいれると良いと思います。</div>
+        </div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">「お知らせ」はもっと上に持ってきたほうがいいと思います。「緊急のお知らせ」「移転のお知らせ」など、今後運用するにあたり優先度高く告知すべきものもあると思うので。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section s4 open">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">コンテンツの充実度・訴求力</div>
+        <div class="section-subtitle">具体的数値・詳細説明の補強</div>
+      </div>
+      <div class="section-count">4 項目</div>
+      <div class="chevron">▶</div>
+    </div>
+    <div class="section-body">
+      <ul class="check-list">
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">強みや差別化ポイントが<strong>「抽象的なワード」</strong>で止まっていないか（DELIVERY・QUALITY・COSTに具体的な数値・詳細があるか）</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">重要なメッセージに<strong>「詳細の肉付け」</strong>がされているか（「AIだけでは〜」を3ポイントに構造化するなど）</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">ユーザーが<strong>「なぜこの会社なのか」</strong>を読み取れるだけの情報量があるか</div>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this)">
+          <div class="check-item-text">コピーが<strong>「数値・固有表現・具体例」</strong>を使って説得力を持っているか</div>
+        </li>
+      </ul>
+      <div class="insight">
+        <div class="insight-label">📌 観点のまとめ</div>
+        デザインカンプのレビューは見た目だけでなく、コピーや情報の「密度・具体性」も評価対象になる。ビジュアルが整っていても内容が薄いと訴求力に欠けると指摘されやすい。
+      </div>
+      <div class="quotes">
+        <div class="quote-title">💬 指摘の声</div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">例えば「要件定義からリリースまで、すべての工程で最大○○%の納期を短縮」「独自のAI開発プラットフォームと徹底的なデータ管理により、属人化を排除。人によらない安定した品質を確保」</div>
+        </div>
+        <div class="quote">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">「AIだけでは、良いシステムはつくれない。」というのは非常に重要なメッセージだと思います。もっと詳細を記載したい。例えば3つのポイントにまとめるなど。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    header.parentElement.classList.toggle('open');
+  }
+
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.check-item');
+    const done = document.querySelectorAll('.check-item.checked');
+    const pct = Math.round((done.length / all.length) * 100);
+    document.getElementById('progress-text').textContent = `${done.length} / ${all.length} 完了`;
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+</script>
+</body>
+</html>
